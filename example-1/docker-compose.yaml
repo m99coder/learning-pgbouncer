@@ -1,0 +1,13 @@
+version: "3"
+services:
+  pgbouncer:
+    build: ./pgbouncer/.
+    ports:
+      - "6543:6543"
+  pgha1:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
+    restart: unless-stopped
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
