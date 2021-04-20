@@ -8,13 +8,13 @@ docker compose down --remove-orphans
 ```
 
 ```bash
-# get MD5 hashes of password to put in `/pgbouncer/conf/users.txt`
+# get MD5 hashes of passwords to put in `/pgbouncer/conf/users.txt`
 PGPASSWORD=example psql -h localhost -p 6543 -U postgres postgres \
   -c "SELECT concat('\"', usename, '\" \"', passwd, '\"') FROM pg_shadow"
 ```
 
 ```bash
-PGPASSWORD=whatever psql -h localhost -p 6543 -U pgbouncer pgbouncer
+PGPASSWORD=example psql -h localhost -p 6543 -U postgres pgbouncer
 psql (13.2, server 1.15.0/bouncer)
 Type "help" for help.
 
