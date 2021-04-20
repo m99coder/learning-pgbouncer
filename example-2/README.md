@@ -7,6 +7,13 @@ docker compose up -d --build
 docker compose down --remove-orphans
 ```
 
+We set `server_fast_close` to `1` so that once the session has finished its transaction, PgBouncer will use the new database server to connect to. To actually trigger the switch, `RECONNECT` and `RELOAD` can be used. In case you want to wait until all connections are closed you can use this line:
+
+```bash
+PGPASSWORD=example psql -h localhost -p 6543 -U postgres pgbouncer \
+  -c "WAIT_CLOSE;"
+```
+
 Check server identity
 
 ```bash
